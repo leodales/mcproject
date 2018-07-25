@@ -26,6 +26,17 @@
                             @endfor
                         </select>
                     </div>
+                    <br/>
+                    @if ( Session::has('error') )
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong>{{ Session::get('error') }}</strong>
+       {{Session::forget('error')}} 
+    </div>
+    @endif
                     <div id="form1">
                         <form action="{{ route('ttSearch') }}" id="form_submit" method="GET" name="form_submit">
                         {{csrf_field()}}
@@ -108,6 +119,7 @@
                                 <tr>
                                      <td>{{$c->PONUM}}</td>
                                     <td>{{$c->TITLENAME}}</td>
+                                    <td>{{$c->ISBN}}</td>
                                     <td>{{$c->ORDERQTY}}</td>
                                     <td>{{$c->UNITPRICE}}</td>
                                     <td>{{$c->TOTALPRICE}}</td>
@@ -137,7 +149,23 @@
                                     <th scope="col"  width="10%">Total Unit Cost($)</th>
                                     <th scope="col" width="10%" >Total Cost($)</th>
                                 <tr></thead> <tbody>
+                        <?php $i=0; ?>
                         @foreach($production_results as $d)
+                        
+                        @if($i%2==0)
+                        <tr bgcolor="#D3EAFF">
+                            
+                            <td><input type="checkbox" name="PBONUM[]" value="{{$d->PBONUM}}" ></td>
+                            <td>{{$d->PODATE}}</td>
+                            <td>{{$d->PBONUM}}</td>
+                            <td>{{$d->TITLE}}</td>
+                            <td>{{$d->ISBN}}</td>
+                            <td>{{$d->TITLESERIAL}}</td>
+                            <td>{{$d->POQTY}}</td>
+                            <td>{{bcadd($d->TOTALUNIT,'0',2)}}</td>
+                            <td>{{bcadd($d->TOTALCOST,'0',2)}}</td>
+                        </tr>
+                        @else
                         <tr>
                             
                             <td><input type="checkbox" name="PBONUM[]" value="{{$d->PBONUM}}" ></td>
@@ -150,6 +178,8 @@
                             <td>{{bcadd($d->TOTALUNIT,'0',2)}}</td>
                             <td>{{bcadd($d->TOTALCOST,'0',2)}}</td>
                         </tr>
+                        @endif
+                        <?php $i++; ?>
                         @endforeach
                         </tbody>
                     </table>

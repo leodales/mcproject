@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Collection;
 use App\mc_production;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Excel;
+use Session;
 
 class SearchController extends Controller
 {
@@ -80,29 +82,15 @@ class SearchController extends Controller
             $titleval = "title$i";
             $eachTitle = $request->$titleval;
             if($eachTitle!= null || $eachTitle !=''){
-                array_push($titleArr, $eachTitle);
+                array_push($titleArr, strtoupper($eachTitle));
             }
         }
-       // $lala = array('as');
 
-        //return view("titleSearch", compact('lala'));
-       // print_r($titleArr);
-       //$production_query = mc_production::select()->orWhere(['TITLESERIAL' => $titleArr])->get();
-       
-        // $production_results = $production_query;
-        // foreach ($production_query as $query) {
-        //     echo $query;
-        // }
-       //return view("titleSearch",compact('production_query'));
-            //return Redirect::route("titleSearch")->with('production_query');
-
-        // $test = mc_production::where(function ($query) use ($titleArr) {
-        //     foreach($titleArr as $title) {
-        //        $query->orWhere('TITLESERIAL', $title);
-        //     }
-        //     })->get();
-        //     //$production_results = $query->get();
-        //     var_dump($test);
+        if(sizeof($titleArr)==0){
+            Session::flash('error','Please enter a value!');
+            return view('titleSearch');
+        }
+      
        
         $finTitleArr = $titleArr;
         $productionSpec_query = DB::table('mcproduction')->select('TITLE','ISBN','TITLESERIAL','EXTENT_COVER','HEIGHT','WIDTH','USUAGE1','PAPERTYPE1','FINISHING1','NUMOFCOLOUR1','USAGE2','PAPERTYPE2','FINISHING2','NUMOFCOLOUR2','BINDING');
@@ -114,12 +102,14 @@ class SearchController extends Controller
             $productionSpec_query->orWhere('TITLESERIAL',$title);
             $production_query->orWhere('TITLESERIAL',$title);
         }
-        $productionSpec_query->groupBy('ISBN','TITLESERIAL')->orderby('PODATE','asc');
+        $productionSpec_query->groupBy('TITLESERIAL')->orderby('PODATE','asc');
         //var_dump($productionSpec_query);
         $productionSpec_results = $production_query->get();
-       
-       
+        $productionSpec_results=$productionSpec_results->unique('TITLESERIAL');
+        
+         
         $production_results = $production_query->get();
+        $production_results = $production_results->sortBy('TITLESERIAL');
        
         $fin_query = DB::table('purchaseorder')->select('*');
         foreach($titleArr as $title){
@@ -128,11 +118,12 @@ class SearchController extends Controller
         $fin_results = $fin_query->get();
         
         foreach($productionSpec_results as $a){
-            $foundTitle = $a->TITLESERIAL;
+            $foundTitle =strtoupper($a->TITLESERIAL);
             if(($key=array_search(strtoupper($foundTitle),$titleArr))!==false){
                 unset($titleArr[$key]);
             }
         }
+      
         foreach($fin_results as $fin){
             $foundTitle = $fin->TITLENAME;
             if(($key=array_search(strtoupper($foundTitle),$finTitleArr))!==false){
@@ -153,8 +144,13 @@ class SearchController extends Controller
             $isbnval = "isbn$i";
             $eachisbn = $request->$isbnval;
             if($eachisbn!= null || $eachisbn !=''){
-                array_push($isbnArr, $eachisbn);
+                array_push($isbnArr,  strtoupper($eachisbn));
             }
+        }
+
+        if(sizeof($isbnArr)==0){
+            Session::flash('error','Please enter a value!');
+            return view('isbnSearch');
         }
      
         $finIsbnArr = $isbnArr;
@@ -170,10 +166,11 @@ class SearchController extends Controller
         $productionSpec_query->groupBy('ISBN','TITLE')->orderby('PODATE','desc');
     
         $productionSpec_results = $production_query->get();
-       
+        $productionSpec_results=$productionSpec_results->unique('TITLESERIAL');
        
         $production_results = $production_query->get();
-       
+        $production_results = $production_results->sortBy('TITLESERIAL');
+
         $fin_query = DB::table('purchaseorder')->select('*');
         foreach($isbnArr as $isbn){
             $fin_query->orWhere('ISBN', $isbn);
