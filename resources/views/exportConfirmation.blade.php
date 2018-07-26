@@ -6,14 +6,14 @@
         align:"center";
     }
     </style>
+  <div class="row">
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default" style="width: 210%; margin-left:-55%;">
+  
+        <div class="col-md-10 col-md-offset-0" style="margin-left:60px">
+            <div class="panel panel-default" style="width:110%;">
                 <div class="panel-heading"><a href="{{ route('singleSearch') }}">&nbsp;&nbsp;Single Search</a>&nbsp;&nbsp;|<a href="{{ route('titleSearch') }}">&nbsp;&nbsp;Title Search</a>&nbsp;&nbsp;|<a href = "{{route('isbnSearch')}}">&nbsp;&nbsp;ISBN Search</a></div>
 
-                <div class="panel-body">
+                <div class="panel-body"  >
                     <h4 class="text-center">Please edit the PO Qty(Forecast Qty), unit cost and total amount </h4>
                     <form method="POST" action="{{ route('export') }}"  enctype="multipart/form-data">
                     {{csrf_field()}}
@@ -98,7 +98,7 @@
                
 
                  
-            </div>
+            
         </div>
     </div>
 </div>

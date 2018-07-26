@@ -9,8 +9,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default" style="width: 210%; margin-left:-55%;">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-default" style="width: 120%;">
                 <div class="panel-heading"><b>Single Search<b>&nbsp;&nbsp;|<a href="{{ route('titleSearch') }}">&nbsp;&nbsp;Title Search</a>&nbsp;&nbsp;|<a href = "{{route('isbnSearch')}}">&nbsp;&nbsp;ISBN Search</a></div>
 
                 <div class="panel-body">
@@ -21,7 +21,7 @@
                         <label style="padding-right: 0.6%">Title Serial:</label>
                         <input type= "text" name="titleSerial"/>
                         <br />
-                        <label style="padding-right: 3%">ISBN:</label>
+                        <label style="padding-right: 45px">ISBN:</label>
                         <input type="text" name="ISBN"/>
                         <br/>       
                         <label>PO Number:</label>
@@ -74,7 +74,7 @@
                         <td>{{$b->NUMOFCOLOUR2}}</td>
                         <td>{{$b->BINDING}}</td>
                         </tr>
-                      
+                      @break
                     @endforeach
                     </tbody>
                     </table>
@@ -126,6 +126,23 @@
                                 <tr></thead> <tbody>
 
                     @for($i=0; $i<count($production_results);$i++)
+                         
+                    @if($i%2==0)
+                        <tr bgcolor="#D3EAFF">
+                        
+                            
+                            <td><input type="checkbox" name="PBONUM[]" value="{{$production_results[$i]->PBONUM}}" required ></td>
+                            <td>{{$production_results[$i]->PODATE}}</td>
+                            <td>{{$production_results[$i]->PBONUM}}</td>
+                            <td>{{$production_results[$i]->TITLE}}</td>
+                            <td>{{$production_results[$i]->ISBN}}</td>
+                            <td>{{$production_results[$i]->TITLESERIAL}}</td>
+                            <td>{{$production_results[$i]->POQTY}}</td>
+                            <td>{{bcadd($production_results[$i]->TOTALUNIT,'0',2)}}</td>
+                            <td>{{bcadd($production_results[$i]->TOTALCOST,'0',2)}}</td>
+                        </tr>
+                    @else
+                       
                         <tr>
                             
                             <td><input type="checkbox" name="PBONUM[]" value="{{$production_results[$i]->PBONUM}}" required ></td>
@@ -135,9 +152,10 @@
                             <td>{{$production_results[$i]->ISBN}}</td>
                             <td>{{$production_results[$i]->TITLESERIAL}}</td>
                             <td>{{$production_results[$i]->POQTY}}</td>
-                            <td>{{$production_results[$i]->TOTALUNIT}}</td>
-                            <td>{{$production_results[$i]->TOTALCOST}}</td>
+                            <td>{{bcadd($production_results[$i]->TOTALUNIT,'0',2)}}</td>
+                            <td>{{bcadd($production_results[$i]->TOTALCOST,'0',2)}}</td>
                         </tr>
+                    @endif
                     @endfor
                     <tr>
                                 

@@ -3,7 +3,7 @@
 @section('content')
 <style>
     #form1{
-        margin-left: 79px;
+        margin-left:76px;
     }
     </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -11,8 +11,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default" style="width: 210%; margin-left:-55%;">
+        <div class="col-md-10 col-md-offset-1   ">
+            <div class="panel panel-default" style="width: 120%; ">
                 <div class="panel-heading"><a href="{{ route('singleSearch') }}">&nbsp;&nbsp;Single Search</a>&nbsp;&nbsp;|&nbsp;&nbsp;<b>Title Search<b>&nbsp;&nbsp;|<a href = "{{route('isbnSearch')}}">&nbsp;&nbsp;ISBN Search</a></div>
 
                 <div class="panel-body">
