@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 
 class InsertController extends Controller
 {
@@ -14,7 +15,12 @@ class InsertController extends Controller
     }
 	public function index()
 	{
-		return view('insert');
+        if(Auth::user()->role == "admin")
+		{
+		 return view('insert');
+		}else{
+            return redirect('home');
+        }
     }
     public function confirmation(Request $request){
        $data =  $request->all();

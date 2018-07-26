@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Session;
+use Illuminate\Support\Facades\Auth;
 
 class deleteController extends Controller
 {
@@ -13,15 +14,36 @@ class deleteController extends Controller
     }
 	public function index()
 	{
-		return view('delete');
+        if(Auth::user()->role == "admin")
+		{
+		    return view('delete');
+        }
+        else
+        {
+            return redirect('home');
+        }
     }
     public function prodDelete()
 	{
-		return view('delete_prod');
+        if(Auth::user()->role == "admin")
+		{
+		    return view('delete_prod');
+        }
+        else
+        {
+            return redirect('home');
+        }
     }
     public function finDelete()
     {
-        return view('delete_fin');
+        if(Auth::user()->role == "admin")
+		{
+            return view('delete_fin');
+        }
+        else
+        {
+            return redirect('home');
+        }
     }
 
 	public function prodRetrieval(Request $request){

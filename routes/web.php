@@ -11,9 +11,10 @@
 |
 */
 Route::get('/',function(){
-    return view('index');
+    return view('auth.login');
 });
 
+Auth::routes();
 
 //routes for production import
 Route::get('/import', 'ProductionController@index')->name('index');
@@ -59,7 +60,6 @@ Route::post('/pbosearch','SearchController@searchPBO')->name('pbosearch');
 Route::post('/export','SearchController@export')->name('export');
 
 //Authorization routes
-Auth::routes();
 
 //routes for user acces
 Route::get('/home', 'HomeController@index')->name('home');

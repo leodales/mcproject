@@ -4,18 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Session;
 use Excel;
 use File;
+use Illuminate\Support\Facades\Auth;
 
 class FinanceController extends Controller
 {
 	public function __construct()
     {
-        $this->middleware('auth');
+		$this->middleware('auth');
     }
 	public function index()
 	{
+		if(Auth::user()->role == "production")
+		{
+			return response('Page not found', Response::HTTP_NO_CONTENT);
+		}
 		return view('add-finance');
 	}
 

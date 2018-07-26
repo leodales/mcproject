@@ -142,6 +142,8 @@ trait AuthenticatesUsers
         return 'username';
     }
 
+  
+
     /**
      * Log the user out of the application.
      *

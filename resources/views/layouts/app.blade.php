@@ -52,24 +52,34 @@
                                    Welcome: {{ Auth::user()->name }} 
                                 </a>
                             </li>
+                            @if( Auth::user()->role == 'admin')
                             <li>
                                 <a href="{{ route('register') }}">Register</a>
                             </li>
+                            @endif
+                            @if(Auth::user()->role != 'finance')
                             <li>
                             <a href="{{route('import')}}"> Production Import</a>
                             </li>
+                            @endif
+                            @if(Auth::user()->role != 'production')
                             <li>
                                 <a href="{{route('import2')}}">Finance Import</a>
                             </li>
+                            @endif
+                            @if(Auth::user()->role == 'admin')
                             <li>
                                 <a href="{{route('delete')}}">Delete</a>
                             </li>
+                            @endif
                             <li>
                                 <a href="{{route('search')}}">Search</a>
                             </li>
+                            @if(Auth::user()->role == 'admin')
                             <li>
                                 <a href="{{route('insert')}}">Insert</a>
                             </li>
+                            @endif
                             <li>
                                 <a href="{{ route('logout') }}">
                                             Logout
