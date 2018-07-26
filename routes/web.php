@@ -56,7 +56,7 @@ Route::get('/iSearch', 'SearchController@iSearch')->name('iSearch');
 
 //routes for exporting data
 Route::post('/pbosearch','SearchController@searchPBO')->name('pbosearch');
-Route::post('/export','searchController@export')->name('export');
+Route::post('/export','SearchController@export')->name('export');
 
 //Authorization routes
 Auth::routes();
