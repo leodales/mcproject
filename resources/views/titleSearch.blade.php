@@ -6,7 +6,7 @@
         margin-left:76px;
     }
     </style>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="{{asset('js/multipleform.js')}}"></script>
 
 <div class="container">
