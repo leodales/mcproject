@@ -33,6 +33,17 @@
                         <br/>   
                         <input type="submit" name="search" class="sub2" value="Search" />
                     </form>
+                    <br/>
+                    @if ( Session::has('error') )
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong>{{ Session::get('error') }}</strong>
+       {{Session::forget('error')}} 
+    </div>
+    @endif
                     @if(!empty($result))
                 
                 @if(count($production_results)<1)
@@ -97,6 +108,7 @@
                                 <tr>
                                     <td>{{$fin_results[$i]->PONUM}}</td>
                                     <td>{{$fin_results[$i]->TITLENAME}}</td>
+                                    <td>{{$fin_result[$i]->ISBN}}</td>
                                     <td>{{$fin_results[$i]->ORDERQTY}}</td>
                                     <td>{{$fin_results[$i]->UNITPRICE}}</td>
                                     <td>{{$fin_results[$i]->TOTALPRICE}}</td>

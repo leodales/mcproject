@@ -28,6 +28,17 @@
                         <br/>   
                         <input type="submit" name="search" class="sub2" value="Search" />
                     </form>
+                    <br/>
+                    @if ( Session::has('zero') )
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong>{{ Session::get('zero') }}</strong>
+       {{Session::forget('zero')}} 
+    </div>
+    @endif
                     @if(!empty($result))
                     <br/>
                     <br/>

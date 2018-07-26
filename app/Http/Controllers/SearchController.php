@@ -57,6 +57,10 @@ class SearchController extends Controller
                unset($fin_arr[$key]);
            }
        }
+       if(sizeof($arr)==0 && sizeof($fin_arr)==0){
+        Session::flash('error','Please enter a value!');
+        return view('singleSearch');
+    }
       
 
         $production_results = DB::table('mcproduction')->select('*')->orwhere($arr)->get();

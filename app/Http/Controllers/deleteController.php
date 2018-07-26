@@ -37,6 +37,10 @@ class deleteController extends Controller
                 unset($arr[$key]);
             }
         }
+        if(sizeof($arr)==0){
+            Session::flash('zero','Please enter a value!');
+            return view('delete_prod');
+        }
 
         $production_results = DB::table('mcproduction')->select('*')->where($arr)->get();
 
@@ -70,6 +74,10 @@ class deleteController extends Controller
             if(is_null($value)){
                 unset($arr[$key]);
             }
+        }
+        if(sizeof($arr)==0){
+            Session::flash('zero','Please enter a value!');
+            return view('delete_fin');
         }
 
         $fin_results = DB::table('purchaseorder')->select('*')->where($arr)->get();
