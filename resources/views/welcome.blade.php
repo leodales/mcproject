@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
-
+<style>
+#example{ 
+    margin-bottom: 2000px;
+}
+</style>
     <!-- DT CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />
    <!-- DT Jscript -->
@@ -9,36 +13,36 @@
 
                 <h1>WELCOME {{ Auth::user()->name }} </h1>
                 <h5 style="color:red; margin-bottom: 20px;">You may search production data by input the neccesary search value. For other features, please use other search features. </h5>
-                <table border="0" id="example" class="display nowrap table-bordered" style="width:50%; ">
+                <table border="0" id="example" class="display nowrap table-bordered"  style="width:50%; ">
                     <thead>
                         <tr>
-                            <th>PODATE</th>
-                            <th>PBONUM</th>
-                            <th>COMNUM</th>
-							<th>COMMITMENTTYPE</th>
-							<th>TITLE</th>
-							<th>ISBN</th>
-							<th>NEWBOOKFLAG</th>
-							<th>PRINTERCODE</th>
-							<th>PRINTERNAME</th>
-							<th>TITLESERIAL</th>
-							<th>PRODUCTCATEGORY</th>
-							<th>EXTENT_COVER</th>
-							<th>HEIGHT</th>
-							<th>WIDTH</th>
-							<th>USAGE1</th>
-							<th>PAPERTYPE1</th>
-							<th>FINISHING1</th>
-							<th>NUMOFCOLOUR1</th>
-							<th>EXTENT</th>
-							<th>USAGE2</th>
-							<th>PAPERTYPE2</th>
-							<th>FINISHING2</th>
-							<th>NUMOFCOLOUR2</th>
-							<th>BINDING</th>
-							<th>POQTY</th>
-							<th>TOTALUNIT</th>
-							<th>TOTALCOST</th>	
+                            <th><br/>PODATE</th>
+                            <th><br/>PBONUM</th>
+                            <th><br/>COMNUM</th>
+							<th><br/>COMMITMENTTYPE</th>
+							<th><br/>TITLE</th>
+							<th><br/>ISBN</th>
+							<th><br/>NEWBOOKFLAG</th>
+							<th><br/>PRINTERCODE</th>
+							<th><br/>PRINTERNAME</th>
+							<th><br/>TITLESERIAL</th>
+							<th><br/>PRODUCTCATEGORY</th>
+							<th><br/>EXTENT_COVER</th>
+							<th><br/>HEIGHT</th>
+							<th><br/>WIDTH</th>
+							<th><br/>USAGE1</th>
+							<th><br/>PAPERTYPE1</th>
+							<th><br/>FINISHING1</th>
+							<th><br/>NUMOFCOLOUR1</th>
+							<th><br/>EXTENT</th>
+							<th><br/>USAGE2</th>
+							<th><br/>PAPERTYPE2</th>
+							<th><br/>FINISHING2</th>
+							<th><br/>NUMOFCOLOUR2</th>
+							<th><br/>BINDING</th>
+							<th><br/>POQTY</th>
+							<th><br/>TOTALUNIT</th>
+							<th><br/>TOTALCOST</th>	
                         </tr>
                     </thead>
 
