@@ -108,7 +108,7 @@
                                 <tr>
                                     <td>{{$fin_results[$i]->PONUM}}</td>
                                     <td>{{$fin_results[$i]->TITLENAME}}</td>
-                                    <td>{{$fin_result[$i]->ISBN}}</td>
+                                    <td>{{$fin_results[$i]->ISBN}}</td>
                                     <td>{{$fin_results[$i]->ORDERQTY}}</td>
                                     <td>{{$fin_results[$i]->UNITPRICE}}</td>
                                     <td>{{$fin_results[$i]->TOTALPRICE}}</td>

@@ -62,8 +62,9 @@ class InsertController extends Controller
 
     public function insert(Request $request){
         $data = $request->all();
+        
         array_shift($data);
-       $fin =  array_pop($data);
+        
        try{
             $prod_success = DB::table('mcproduction')->insert($data);
             
@@ -78,11 +79,14 @@ class InsertController extends Controller
         'ORDERQTY'=>$data['poqty'],'UNITPRICE'=>$data['totalunit'],
         'TOTALPRICE'=>$data['totalcost']
         ]);
-       $this->insertfin($finArr);
+        if(array_key_exists('fin', $data)){
+            $this->insertfin($finArr);
+        }
+      
        
 
       
-      return view('insert');
+     return view('insert');
     }
 
     public function massiveInsert(Request $request){

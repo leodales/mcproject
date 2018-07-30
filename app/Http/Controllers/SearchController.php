@@ -70,7 +70,7 @@ class SearchController extends Controller
        //echo($fin_results);
        $result =array(true);
        //print_r($production_results);
-      
+      //print_r($fin_results);
     return view('singleSearch',compact("production_results","fin_results","result"));
        
           
