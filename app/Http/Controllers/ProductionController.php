@@ -51,6 +51,7 @@ class ProductionController extends Controller
 							Session::flash('error', 'Error inserting the data..');
 							return back(); 
 						}
+						if($attb!=null||$attb!=''){
 						array_push($attb1,$attb);
 						//$attb[] = $key['pbo_num'];	
 						//var_dump($attb);
@@ -85,6 +86,7 @@ class ProductionController extends Controller
 						'TOTALCOST'=> $key['total_cost'],
 						
 						];
+					}
 
 					}
 

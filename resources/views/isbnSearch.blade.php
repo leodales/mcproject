@@ -97,43 +97,7 @@
                     </table>
                     <br/>
                     <br/>
-                    @if(count($fin_results)<1)
-                            <h4 style="color:red;"> No results found in Financial Data</h4>
-                        @else
-                        <h2>Results from financial data: </h2>
-                            @if(!empty($finIsbn_arr))
-                                <br/>
-                                <h4 style="color:red;">List of unfound ISBN Serial: </h4>
-                                @foreach($finIsbnArr as $b)
-                                    {{$b}},
-                                @endforeach
-                            @endif
-                            <div id="table"><table border="1" font-size="0.5em" cellpadding="10" ><thead>
-                                <tr>
-                                    <th scope="col" >PO Number</th>
-                                    <th scope="col" padding-left="5em">Title Name  </th>
-                                    <th scope="col" >ISBN</th>
-                                    <th  scope="col">Order Qty</th>
-                                    <th scope="col">Unit Price</th>
-                                    <th scope="col">Total Price </th>
-                            <tr></thead> <tbody>
-                            @foreach($fin_results as $c)
-                                <tr>
-                                     <td>{{$c->PONUM}}</td>
-                                    <td>{{$c->TITLENAME}}</td>
-                                    <td>{{$c->ORDERQTY}}</td>
-                                    <td>{{$c->UNITPRICE}}</td>
-                                    <td>{{$c->TOTALPRICE}}</td>
-                                </tr>   
-                            @endforeach
-                            </tbody></table>
-                            <br/>
-                            <br/>
-                            </div>
-                        @endif
-                        <!-- end of fin display-->
-
-                         <h2>Results from production data: </h2>
+                    <h2>Results from production data: </h2>
                         <h4>Please select the rows required to be edited and export. </h4>
                         <form method="POST" action="{{ route('pbosearch') }}" enctype="multipart/form-data">
                              {{csrf_field()}}
@@ -189,10 +153,48 @@
                         
                     
                     @endif
+                    @endif
+                    @if(count($fin_results)<1)
+                            <h4 style="color:red;"> No results found in Financial Data</h4>
+                        @else
+                        <h2>Results from financial data: </h2>
+                            @if(!empty($finIsbn_arr))
+                                <br/>
+                                <h4 style="color:red;">List of unfound ISBN Serial: </h4>
+                                @foreach($finIsbnArr as $b)
+                                    {{$b}},
+                                @endforeach
+                            @endif
+                            <div id="table"><table border="1" font-size="0.5em" cellpadding="10" ><thead>
+                                <tr>
+                                    <th scope="col" >PO Number</th>
+                                    <th scope="col" padding-left="5em">Title Name  </th>
+                                    <th scope="col" >ISBN</th>
+                                    <th  scope="col">Order Qty</th>
+                                    <th scope="col">Unit Price</th>
+                                    <th scope="col">Total Price </th>
+                            <tr></thead> <tbody>
+                            @foreach($fin_results as $c)
+                                <tr>
+                                     <td>{{$c->PONUM}}</td>
+                                    <td>{{$c->TITLENAME}}</td>
+                                    <td>{{$c->ISBN}}</td>       
+                                    <td>{{$c->ORDERQTY}}</td>
+                                    <td>{{$c->UNITPRICE}}</td>
+                                    <td>{{$c->TOTALPRICE}}</td>
+                                </tr>   
+                            @endforeach
+                            </tbody></table>
+                            <br/>
+                            <br/>
+                            </div>
+                        @endif
+                        <!-- end of fin display-->
+
+                         
                    
 
                     
-                    @endif
                     
                 </div>
 

@@ -47,7 +47,7 @@
                     @if(!empty($result))
                 
                 @if(count($production_results)<1)
-                    <h4>No results found in production Data</h4>
+                    <h4 style="color:red;">No results found in production Data</h4>
                 @else
                     <h2>Title Specification:</h2>
                     <table border="1"  font-size="0.5em" cellpadding="15" ><thead>
@@ -91,34 +91,6 @@
                     </table>
                     <br/>
                     <br/>
-                    @if(count($fin_results)<1)
-                    <h4 style="color:red;">No results found in financial Data</h4>
-                    @else
-                        <h2>Results from financial data: </h2>
-                        <div id="table"><table border="1" font-size="0.5em" cellpadding="10" ><thead>
-                            <tr>
-                                <th scope="col" >PO Number</th>
-                                <th scope="col" padding-left="5em">Title Name  </th>
-                                <th scope="col" >ISBN</th>
-                                <th  scope="col">Order Qty</th>
-                                <th scope="col">Unit Price</th>
-                                <th scope="col">Total Price </th>
-                            <tr></thead> <tbody>
-                            @for($i=0; $i<count($fin_results);$i++)
-                                <tr>
-                                    <td>{{$fin_results[$i]->PONUM}}</td>
-                                    <td>{{$fin_results[$i]->TITLENAME}}</td>
-                                    <td>{{$fin_results[$i]->ISBN}}</td>
-                                    <td>{{$fin_results[$i]->ORDERQTY}}</td>
-                                    <td>{{$fin_results[$i]->UNITPRICE}}</td>
-                                    <td>{{$fin_results[$i]->TOTALPRICE}}</td>
-                                </tr>
-                            @endfor
-                            </tbody></table>
-                            <br/>
-                            <br/>
-                    @endif
-                    
                     <h2>Results from production data: </h2>
                     <h4>Please select the rows required to be edited and export. </h4>
                     <form method="POST"  action="{{ route('pbosearch') }}" enctype="multipart/form-data">
@@ -168,20 +140,52 @@
                             <td>{{bcadd($production_results[$i]->TOTALCOST,'0',2)}}</td>
                         </tr>
                     @endif
+
                     @endfor
-                    <tr>
-                                
-                        </tr>
+                    
+                    </tr>
                     </tbody>
                     </table>
                     <br/>
-                    <input type="submit"  class="sub2" name="poForm" value="Export"/></form>
+                    <input type="submit"  class="sub2" name="poForm" value="Export"/></form>  <tr>
+                @endif
+                    @if(count($fin_results)<1)
+                    <h4 style="color:red;">No results found in financial Data</h4>
+                    @else
+                        <h2>Results from financial data: </h2>
+                        <div id="table"><table border="1" font-size="0.5em" cellpadding="10" ><thead>
+                            <tr>
+                                <th scope="col" >PO Number</th>
+                                <th scope="col" padding-left="5em">Title Name  </th>
+                                <th scope="col" >ISBN</th>
+                                <th  scope="col">Order Qty</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Total Price </th>
+                            <tr></thead> <tbody>
+                            @for($i=0; $i<count($fin_results);$i++)
+                                <tr>
+                                    <td>{{$fin_results[$i]->PONUM}}</td>
+                                    <td>{{$fin_results[$i]->TITLENAME}}</td>
+                                    <td>{{$fin_results[$i]->ISBN}}</td>
+                                    <td>{{$fin_results[$i]->ORDERQTY}}</td>
+                                    <td>{{$fin_results[$i]->UNITPRICE}}</td>
+                                    <td>{{$fin_results[$i]->TOTALPRICE}}</td>
+                                </tr>
+                            @endfor
+                            </tbody></table>
+                            <br/>
+                            <br/>
+                    @endif
+                    
+                    
+                                
+                 
 
                 @endif
                     
 
               
-                @endif
+                
                     
                 </div>
 
