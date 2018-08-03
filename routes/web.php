@@ -16,6 +16,13 @@ Route::get('/',function(){
 
 Auth::routes();
 
+//routes for export
+Route::get('/exportpg','HomeController@export')->name('exportpg');
+//routes for finace export
+Route::get('/finance_export','FinanceController@export')->name('fin_export');
+//routes for production export
+Route::get('/prod_export','ProductionController@export')->name('prod_export');
+
 //routes for production import
 Route::get('/import', 'ProductionController@index')->name('index');
 Route::post('import', 'ProductionController@import')->name('import');

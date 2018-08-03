@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\mcproduction;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
@@ -40,6 +40,19 @@ class HomeController extends Controller
        $productions = json_encode($production,true);
         //print_r($productions);
         return view('welcome', compact("productions"));
+    }
+
+    public function export(){
+        
+        if(Auth::user()->role == "admin")
+		{
+		    return view('export');
+        }
+        else
+        {
+            return redirect('home');
+        }
+        
     }
 
 }

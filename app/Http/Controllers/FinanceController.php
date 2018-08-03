@@ -131,6 +131,51 @@ class FinanceController extends Controller
 			}
 		}
 	}
+
+
+
+	public function export(){
+
+        $data = DB::table('purchaseorder')->select('*')->get();
+		$ldate = date('Y-m-d H:i:s');
+		
+		$exportName = 'Finance'.$ldate;
+
+
+		Excel::create($exportName	, function($excel) use($data){
+			$excel->sheet('Finance',function($sheet) use($data){
+				{
+					$sheet->cell('A1',function($cell){$cell->setValue('PO Num'); });
+					$sheet->cell('B1',function($cell){$cell->setValue('Title Name'); });
+					$sheet->cell('C1',function($cell){$cell->setValue('ISBN'); });
+					$sheet->cell('D1',function($cell){$cell->setValue('Order Qty'); });
+					$sheet->cell('E1',function($cell){$cell->setValue('Unit Price'); });
+					$sheet->cell('F1',function($cell){$cell->setValue('Total Price'); });
+				
+					
+					$i=2;
+					if(!empty($data)){
+						for($j=0; $j<sizeof($data); $j++){
+							$sheet->cell('A'.$i, $data[$j]->PONUM);
+							$sheet->cell('B'.$i, $data[$j]->TITLENAME);
+							$sheet->cell('C'.$i, $data[$j]->ISBN);
+							$sheet->cell('D'.$i, $data[$j]->ORDERQTY);
+							$sheet->cell('E'.$i, $data[$j]->UNITPRICE);
+							$sheet->cell('F'.$i, $data[$j]->TOTALPRICE);
+						
+							$i++;
+						}
+					}
+
+
+				}
+			});
+		})->export('xls');
+	
+
+        
+           
+        }//end of export
 }
 
 

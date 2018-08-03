@@ -67,10 +67,15 @@
                                 <a href="{{route('import2')}}">Finance Import</a>
                             </li>
                             @endif
+
                             @if(Auth::user()->role == 'admin')
+                            <li>
+                                <a href="{{route('exportpg')}}">Export</a>
+                            </li>
                             <li>
                                 <a href="{{route('delete')}}">Delete</a>
                             </li>
+                            
                             @endif
                             <li>
                                 <a href="{{route('search')}}">Search</a>

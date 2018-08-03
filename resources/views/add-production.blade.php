@@ -48,7 +48,7 @@
 
 </div>
 @endif
-
+<a href="{{route('prod_export')}}">Export (all) </a>
 
 
 <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
