@@ -16,6 +16,11 @@ Route::get('/',function(){
 
 Auth::routes();
 
+//routes for sort
+Route::get('/sortpg','SortController@index')->name('sortpg');
+//routes for sort function
+Route::post('/sort','SortController@import')->name('sort');
+
 //routes for export
 Route::get('/exportpg','HomeController@export')->name('exportpg');
 //routes for finace export

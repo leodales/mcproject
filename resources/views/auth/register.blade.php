@@ -93,6 +93,7 @@
                                     <option value="admin">Admin</option>
                                     <option value="production">Production</option>
                                     <option value="finance">Finance</option>
+                                    <option value="staff">Staff</option>
                                 </select>    
 
                             </div>

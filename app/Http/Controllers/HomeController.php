@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+       
+        
         $data = mcproduction::get();
         $production=array();
         foreach ($data as $key) {

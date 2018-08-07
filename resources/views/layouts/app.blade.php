@@ -52,17 +52,22 @@
                                    Welcome: {{ Auth::user()->name }} 
                                 </a>
                             </li>
+                            @if( Auth::user()->role == 'staff')
+                            <li>
+                                <a href="{{ route('sortpg') }}">Sort</a>
+                            </li>
+                            @endif
                             @if( Auth::user()->role == 'admin')
                             <li>
                                 <a href="{{ route('register') }}">Register</a>
                             </li>
                             @endif
-                            @if(Auth::user()->role != 'finance')
+                            @if(Auth::user()->role != 'finance' && Auth::user()->role!='staff')
                             <li>
                             <a href="{{route('import')}}"> Production Import</a>
                             </li>
                             @endif
-                            @if(Auth::user()->role != 'production')
+                            @if(Auth::user()->role != 'production' && Auth::user()->role!='staff')
                             <li>
                                 <a href="{{route('import2')}}">Finance Import</a>
                             </li>
@@ -77,9 +82,11 @@
                             </li>
                             
                             @endif
+                            @if(Auth::user()->role!='staff')
                             <li>
                                 <a href="{{route('search')}}">Search</a>
                             </li>
+                            @endif
                             @if(Auth::user()->role == 'admin')
                             <li>
                                 <a href="{{route('insert')}}">Insert</a>
